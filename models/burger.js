@@ -1,31 +1,27 @@
-var orm = require("../config/orm.js");
+module.exports = function(sequelize, DataTypes) {
+  var Burger = sequelize.define("Burgers", {
+    burger_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+    devoured: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
+  });
 
-// Import the ORM to create functions that will interact with the database.
+  ///Burger.associate = function(models) {
+    // We're saying that a Post should belong to an Author
+    // A Post can't be created without an Author due to the foreign key constraint
+   /// Burger.belongsTo(models.Customer, {
+     /// foreignKey: {
+       /// allowNull: false
+     /// }
+    ///});
+ /// };
 
-
-var burger = {
-  all: function(callback) {
-    orm.selectAll("burgers", function(res) {
-      callback(res);
-    });
-  },
-  // The variables cols and vals are arrays.
-  create: function( cols,vals, callback) {
-    orm.create("burgers", cols, vals, function(res) {
-      callback(res);
-    });
-  },
-  update: function(objColVals, condition, callback) {
-    orm.update("burgers", objColVals, condition, function(res) {
-      callback(res);
-    });
-  },
-  delete: function(condition, callback) {
-    orm.delete("burgers", condition, function(res) {
-      callback(res);
-    });
-  }
+  return Burger;
 };
-
-// Export the database functions for the controller 
-module.exports = burger;
