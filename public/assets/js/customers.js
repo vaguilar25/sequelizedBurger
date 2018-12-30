@@ -1,7 +1,8 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 //Change the state of the burger
 $(function () {
-    console.log("test");
+
+    
     //Create New Customer
     $(".customer-form").on("submit", function (event) {
         // Make sure to preventDefault on a submit event.
@@ -38,7 +39,7 @@ $(function () {
             function () {
                 console.log("delete customer");
                 // Reload the page to get the updated list
-                location.reload();
+               location.reload();
             }
         );
     });

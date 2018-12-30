@@ -1,13 +1,14 @@
-<h3 class="text-center">Enter your Customers
-</h3>
-<form class="customer-form">
-    <div class="form-group">
-        <label for="inputCustomer">Customer Name</label>
+<h3 class="text-center ">Enter your new Customers
+</h3><br>
+<a href="/">Go to Orders</a>
+<form class="customer-form card p-2 " style="width: 34rem;">
+    <div class="form-group ">
+        <label for="inputCustomer"><b>Customer Name:</b></label>
         <input type="text" class="form-control" id="inputCustomer" placeholder="Add new Customer">
 
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" style="width: 8rem;">Submit</button>
 </form>
 
 <div class="row">
@@ -20,16 +21,24 @@
             {{#each customer}}
 
             <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
+                <div class="customerContainer">
                     <h6 class="my-0">
-                        {{name}}</h6>
+                        #{{id}} - {{name}} - {{error}}</h6>
+                  
                 </div>
                 <span class="text-muted">
                     <button class="deleteCustomer" data-id="{{id}}">
                         Delete
-                    </button>
-                </span>
 
+                    </button>
+
+
+                </span>
+            
+                {{#if error}}
+                <div class="alert alert-danger">{{error}} error</div>
+                {{/if}}
+               
             </li>
 
             {{/each}}

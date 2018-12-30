@@ -8,7 +8,8 @@ var db = require("../models");
 module.exports = function (app) {
   app.get("/customers", function (req, res) {
 
-    db.Customer.findAll({}).then(function (dbCustomer) {
+    db.Customer.findAll({
+    }).then(function (dbCustomer) {
 
       var hbsObject = {
         customer: dbCustomer
@@ -52,7 +53,16 @@ module.exports = function (app) {
       }
     }).then(function (dbCustomer) {
       res.json(dbCustomer);
+    })
+    .catch(function (err) {
+      // handle error;
+      console.log("Error");
+      
+  
     });
+    
   });
+
+ 
 }
 
