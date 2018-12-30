@@ -7,14 +7,25 @@ var db = require("../models");
 
 module.exports = function (app) {
   app.get("/", function (req, res) {
+ 
 
-    db.Burgers.findAll({}).then(function (dbBurger) {
+    db.Customer.findAll({}).then(function (dbCustomer) {
+   
 
-      var hbsObject = {
-        burger: dbBurger
-      };
-      res.render("index", hbsObject);
+      db.Burgers.findAll({
+        include: [db.Customer]
+      }).then(function (dbBurger) {
+
+       
+        res.render("index", { 
+          customer: dbCustomer,
+          burger: dbBurger
+
+         });
+      });
+
     });
+
 
   });
 
@@ -26,8 +37,12 @@ module.exports = function (app) {
 
   });
 
+
+
+
+
   app.put("/api/burgers/:id", function (req, res) {
-   
+
     db.Burgers.update(
       req.body,
       {
@@ -39,7 +54,7 @@ module.exports = function (app) {
       });
 
 
-    
+
   });
 
   app.delete("/api/burgers/:id", function (req, res) {

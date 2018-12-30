@@ -27,7 +27,7 @@ $(function () {
         if ($("#bg").val().trim() != "") {
             var newBurger = {
                 burger_name: $("#bg").val().trim(),
-
+                CustomerId: $("#customersList").val()
             };
 
             // Send the POST request.
