@@ -12,21 +12,29 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-   return queryInterface.bulkInsert('Burgers', [
-    { burger_name: 'Cheese burger', createdAt: Date.now(), updatedAt: Date.now()},
+   return queryInterface.bulkInsert('Customers', [
+    { name: 'Fabian', createdAt: new Date(), updatedAt: new Date()},
     {
-      burger_name: 'Double cheese burger', createdAt: Date.now(), updatedAt: Date.now()
+      name: 'Josue', createdAt: new Date(), updatedAt: new Date()
     },
     {
-      burger_name: 'Bacon burger', createdAt: Date.now(), updatedAt: Date.now()
+      name: 'Vivian', createdAt: new Date(), updatedAt: new Date()
+    }
+
+  ], {}).then(function () { 
+     return queryInterface.bulkInsert('Burgers', [
+    { burger_name: 'Cheese burger', createdAt: new Date(), updatedAt: new Date(),CustomerId:1},
+    {
+      burger_name: 'Double cheese burger', createdAt: new Date(), updatedAt: new Date(),CustomerId:2
+    },
+    {
+      burger_name: 'Bacon burger', createdAt: new Date(), updatedAt: new Date(),CustomerId:3
     }
 
   ], {});
-
-
-  },
-
-  down: (queryInterface, Sequelize) => {
+  
+  })
+  },down: (queryInterface, Sequelize) => {
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
